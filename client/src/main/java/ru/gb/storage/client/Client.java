@@ -22,9 +22,9 @@ public class Client extends Application {
         stage.setTitle("Cloud storage");
         stage.setScene(new Scene(root, 600, 400));
         stage.show();
-        new Client().start();
+        new Client().startClient();
     }
-    public void start()  {
+    public void startClient()  {
 
         final NioEventLoopGroup group = new NioEventLoopGroup(1);
         try{
