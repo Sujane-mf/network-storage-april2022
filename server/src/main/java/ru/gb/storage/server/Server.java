@@ -35,33 +35,8 @@ public class Server {
                                     new LineBasedFrameDecoder(256),
                                     new StringDecoder(),
                                     new StringEncoder(),
-                                    new SimpleChannelInboundHandler<String>() {
-                                        @Override
-                                        public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-                                            System.out.println("Канал зарегистрирован");
-                                        }
-
-                                        @Override
-                                        public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-                                            System.out.println("Канал разрегистрирован");
-                                        }
-
-                                        @Override
-                                        public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                            System.out.println("Канал активирован");
-                                        }
-
-                                        @Override
-                                        public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-                                            System.out.println("Канал деактивирован");
-                                        }
-
-                                        @Override
-                                        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-                                            ctx.writeAndFlush(msg);
-                                        }
-                                    }
-                            );
+                                    new ClientHandler()
+                                    );
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
